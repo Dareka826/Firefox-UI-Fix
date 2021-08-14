@@ -812,8 +812,8 @@
 
   /** Selected Tab - Bottom Rounded Corner ************************************/
   #tabbrowser-tabs {
-    --tab-corner-rounding: 4px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
-    --tab-corner-padding:  1px;
+    --tab-corner-rounding: 0px; /* 10px looks about like chromium - 17px looks close to Australis tabs */
+    --tab-corner-padding:  0px;
   }
 
   :root[lwtheme="true"] tab[visuallyselected] > stack::before,
@@ -2210,4 +2210,9 @@
   #urlbar-input-container .textbox-contextmenu menuitem[cmd="cmd_selectAll"]  {
     --menuitem-image: url(./icons/select-all-on.svg);
   }
+}
+
+/* Make corners square */
+* {
+	border-radius: 0px !important;
 }
