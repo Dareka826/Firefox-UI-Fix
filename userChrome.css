@@ -2221,3 +2221,8 @@
 #TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background {
 	box-shadow: none !important;;
 }
+
+/* Change tab line color */
+.tab-context-line {
+	--tab-line-color: #6600ff;
+}
