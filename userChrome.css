@@ -2216,3 +2216,8 @@
 * {
 	border-radius: 0px !important;
 }
+
+/* Make active tab look better (remove side lines) */
+#TabsToolbar[brighttext] #tabbrowser-tabs:not([noshadowfortests]) .tabbrowser-tab:is([visuallyselected="true"], [multiselected]) > .tab-stack > .tab-background {
+	box-shadow: none !important;;
+}
