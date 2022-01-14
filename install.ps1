@@ -95,6 +95,7 @@ function Install-Choco() {
   Set-ExecutionPolicy Bypass -Scope Process -Force
   [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072
   iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+  $env:Path += ";C:\ProgramData\chocolatey"
 }
 
 function Check-Git() {
@@ -103,6 +104,7 @@ function Check-Git() {
       Install-Choco
     }
     choco install git -y
+    $env:Path += ";C:\Program Files\Git\bin"
   }
 
   Lepton-OKMessage "Required - git"
@@ -136,9 +138,10 @@ function Copy-Auto() {
   }
 
   if ( Test-Path -Path "${target}" ) {
-    Write-Host "${target} alreay exist."
-    Write-Host "Now Backup.."
+    Write-Host "${target} already exists."
+    Write-Host "Now making a backup.."
     Copy-Auto "${target}" "${target}.bak"
+    Remove-Item "${target}" -Recurse -Force
     Write-Host ""
   }
 
@@ -159,8 +162,8 @@ function Move-Auto() {
   }
 
   if ( Test-Path -Path "${target}" ) {
-    Write-Host "${target} alreay exist."
-    Write-Host "Now Backup.."
+    Write-Host "${target} already exists."
+    Write-Host "Now making a backup.."
     Move-Auto "${target}" "${target}.bak"
     Write-Host ""
   }

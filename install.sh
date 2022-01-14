@@ -74,7 +74,7 @@ check_git() {
     elif [[ "${OSTYPE}" == "darwin"* ]]; then
       mac_command_line_developer_tools
     else
-      lepton_error_message "OS NOT DETECTED, couldn't install required packages"
+      lepton_error_message "OS NOT DETECTED, couldn't install required packages. Please manually install git."
     fi
   fi
 
@@ -123,9 +123,10 @@ autocp() {
   fi
 
   if [ -e "${target}" ]; then
-    echo "${target} alreay exist."
-    echo "Now Backup.."
+    echo "${target} already exists."
+    echo "Now making a backup.."
     autocp "${target}" "${target}.bak"
+    rm -rf "${target}"
     echo ""
   fi
 
@@ -142,8 +143,8 @@ automv() {
   fi
 
   if [ -e "${target}" ]; then
-    echo "${target} alreay exist."
-    echo "Now Backup.."
+    echo "${target} already exists."
+    echo "Now making a backup.."
     automv "${target}" "${target}.bak"
     echo ""
   fi
@@ -235,7 +236,7 @@ set_ini_value() {
 #== Multiselect ================================================================
 # https://stackoverflow.com/questions/45382472/bash-select-multiple-answers-at-once/54261882
 multiselect() {
-  echo 'Select with <space>, Done with <enter>!!!'
+  echo 'Select with <space>, confirm with <enter>'
 
   # little helpers for terminal print control and key input
   ESC=$( printf "\033")
@@ -336,6 +337,7 @@ multiselect() {
 firefoxProfileDirPaths=(
   "${HOME}/.mozilla/firefox"
   "${HOME}/.var/app/org.mozilla.firefox/.mozilla/firefox"
+  "${HOME}/.firedragon/"
   "${HOME}/.librewolf/"
   "${HOME}/Library/Application Support/Firefox"
   "${HOME}/Library/Application Support/LibreWolf"
